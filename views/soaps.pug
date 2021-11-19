@@ -1,20 +1,29 @@
 extends layout
 
 block content
-  div(class="container-fluid")
-    h1= title
-  - let results=[{name:"santoor",type:"cleaning soaps",cost:50},{name:"rin",type:"washing soaps",cost:40},{name:"pears",type:"body soap",cost:60}] 
-    div(class="row")
-      each form,index in results
-        div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{form.name}
-        br
-        br
-        br
-        div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{form.type}
-        br
-        br
-        br
-        div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{form.cost}
+      
+    div(class="container-fluid") 
+      div(class="row") 
+        each item in items  
+          - let destination = `dispatch(\"/costumes/update?id=${item._id}\")` 
+          div(class="row-sm-2", class="m-1") Item #{item.name}(#{item.type}) is #{item.cost} 
+            button.btn( class="btn-primary ml-1", onclick= destination) Update 
+        
+
+    div(class="container-fluid")
+        h1= title
+      - let results=[{name:"santoor",type:"cleaning soaps",cost:50},{name:"rin",type:"washing soaps",cost:40},{name:"pears",type:"body soap",cost:60}] 
+        div(class="row")
+          each form,index in results
+            div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{form.name}
+            br
+            br
+            br
+            div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{form.type}
+            br
+            br
+            br
+            div(class = "col-sm-2 bg-primary" onclick=`buy(${index})`) #{form.cost}    
     script.
      
      function buy(itemNo)

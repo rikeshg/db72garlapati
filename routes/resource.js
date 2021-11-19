@@ -9,7 +9,10 @@ var costume_controller = require('../controllers/costume');
 
  
 /// API ROUTE /// 
- 
+
+/* GET costumes */ 
+router.get('/', costume_controlers.costume_view_all_Page ); 
+
 // GET resources base. 
 router.get('/', api_controller.api); 
  
