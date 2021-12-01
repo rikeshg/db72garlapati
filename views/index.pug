@@ -1,20 +1,12 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
-  p This is vs code 
-  
-  button(type="button", class="btn btn-success" onclick="update()") Press Me
-  br    
-  
-  br
-  div(id="target") Display 
-   script.
-    var client_count=0
-    function update(){
-     client_count++;
-     document.getElementById("target").innerHTML=`value now ${client_count}`
-     }
-    br
-  a(href="soaps") Link to soaps
+extends layout 
+ 
+block content 
+  if (!user) 
+    a(href="/login") Login 
+    br 
+    a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/costumes") Take me to costumes 
+    br 
+    a(href="/logout") Logout 

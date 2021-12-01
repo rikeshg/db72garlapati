@@ -24,9 +24,9 @@ async function recreateDB(){
   // Delete everything 
   await Costume.deleteMany(); 
  
-  let instance1 = new Costume({costume_type:"ghost",  size:'large', cost:25.4}); 
+  let instance1 = new Costume({costume_type:"ghost",  size:'large', cost:35.4}); 
   let instance2 = Costume({costume_type:"god",  size:'large', cost:95.8}); 
-  let instance3 = Costume({costume_type:"superheroes",  size:'large', cost:10.8}); 
+  let instance3 = Costume({costume_type:"superheroes",  size:'large', cost:35.8}); 
   instance1.save( function(err,doc) { 
       if(err) return console.error(err); 
       console.log("First object saved") 
@@ -64,13 +64,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/soaps', soapsRouter);
-app.use('/selector', selectorRouter);
-app.use('/resource', resourceRouter);
-app.use('/costumes', resourceRouter);
-
 passport.use(new LocalStrategy( 
   function(username, password, done) { 
     Account.findOne({ username: username }, function (err, user) { 
@@ -102,6 +95,15 @@ passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser()); 
 passport.deserializeUser(Account.deserializeUser()); 
  
+
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/soaps', soapsRouter);
+app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
+app.use('/costumes', resourceRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
